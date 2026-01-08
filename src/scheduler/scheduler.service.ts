@@ -1,60 +1,152 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
-import { Interval } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { OctoparseService } from '../octoparse/octoparse.service';
 import { JobsService } from '../jobs/jobs.service';
-import type { AppConfig } from '../config/interface/app-config.interface'; // ✅ import type
+import { TasksService } from '../tasks/tasks.service';
+import { TaskLean } from '../tasks/tasks.schema';
+import type { AppConfig } from '../config/interface/app-config.interface';
 
 @Injectable()
 export class SchedulerService {
   private readonly logger = new Logger(SchedulerService.name);
+  private isRunning = false;
 
   constructor(
+    private readonly tasksService: TasksService,
     private readonly octoparseService: OctoparseService,
     private readonly jobsService: JobsService,
-    @Inject('APP_CONFIG') private readonly config: AppConfig, // ✅ Use AppConfig, NOT ConfigModule
-  ) {}
+    @Inject('APP_CONFIG') private readonly config: AppConfig,
+  ) {
+    this.logger.log(
+      `Scheduler initialized (scrape interval config: ${this.config.scrapeIntervalSeconds}s)`,
+    );
+  }
 
-  /**
-   * Scheduler interval
-   * Runs every SCRAPE_INTERVAL_SECONDS
-   */
-  @Interval(60000) // placeholder, you can dynamically set interval in constructor if needed
+  // Handles the scheduled hourly scraping job execution
+  @Cron(CronExpression.EVERY_HOUR)
   async handleScrape(): Promise<void> {
+    if (this.isRunning) {
+      this.logger.warn('Scraping job already running, skipping...');
+      return;
+    }
+
+    this.isRunning = true;
+    const startTime = Date.now();
+
     try {
-      const intervalMs = this.config.scrapeIntervalSeconds * 1000;
-      this.logger.log(`Scheduler triggered, interval set to ${intervalMs}ms`);
+      this.logger.log('=== Starting scheduled scraping job ===');
+      this.logger.log('Step 1: Syncing tasks from Octoparse...');
+      await this.tasksService.syncTasksFromOctoparse();
 
-      // 1️⃣ Fetch all tasks from Octoparse
-      const tasksResponse = await this.octoparseService.fetchTasks();
-      const tasks = tasksResponse.data.tasks ?? [];
+      this.logger.log('Step 2: Fetching active tasks...');
+      const activeTasks: TaskLean[] = await this.tasksService.getActiveTasks();
 
-      if (!tasks.length) {
-        this.logger.warn('No tasks found in Octoparse');
+      if (activeTasks.length === 0) {
+        this.logger.warn('No active tasks found, skipping data fetch');
         return;
       }
 
-      // 2️⃣ Loop through tasks and fetch data
-      for (const task of tasks) {
-        const taskData = await this.octoparseService.fetchTaskData(task.taskId);
-        const rows = taskData.data.rows ?? [];
-
-        if (!rows.length) {
-          this.logger.log(`No data for task: ${task.taskName}`);
-          continue;
-        }
-
-        // 3️⃣ Save data in MongoDB
-        await this.jobsService.bulkCreate(task.taskId, rows);
-        this.logger.log(`Saved ${rows.length} rows for task: ${task.taskName}`);
+      this.logger.log(`Found ${activeTasks.length} active task(s)`);
+      for (const task of activeTasks) {
+        await this.processTask(task);
       }
 
-      this.logger.log('Scheduler completed successfully');
+      const duration = Date.now() - startTime;
+      this.logger.log(
+        `=== Scraping job completed successfully in ${duration}ms ===`,
+      );
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        this.logger.error('Scheduler failed', error.stack);
-      } else {
-        this.logger.error('Scheduler failed', JSON.stringify(error));
-      }
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      const errorStack = error instanceof Error ? error.stack : undefined;
+      this.logger.error(`Scraping job failed: ${errorMessage}`, errorStack);
+    } finally {
+      this.isRunning = false;
     }
   }
+
+  // Processes a single task by fetching data, normalizing jobs, and updating task status
+  private async processTask(task: TaskLean): Promise<void> {
+    const taskId = task.taskId?.trim() ?? '';
+    const name = task.name?.trim() ?? '';
+    const lastOffset = task.lastOffset ?? 0;
+
+    if (!taskId) {
+      this.logger.error('Invalid task: taskId is missing or empty');
+      return;
+    }
+
+    try {
+      this.logger.log(`Processing task: ${name} (${taskId})`);
+      await this.tasksService.updateStatus(taskId, 'running');
+
+      const batchSize = 100;
+      const safeOffset = Math.max(0, Math.floor(lastOffset));
+
+      const dataResponse = await this.octoparseService.fetchTaskData(
+        taskId,
+        safeOffset,
+        batchSize,
+      );
+
+      const rows = dataResponse.data?.rows ?? [];
+      const total = dataResponse.data?.total ?? 0;
+
+      if (rows.length === 0) {
+        this.logger.log(`No new data for task: ${name}`);
+        await this.tasksService.updateStatus(taskId, 'idle');
+        return;
+      }
+
+      this.logger.log(
+        `Fetched ${rows.length} rows (offset: ${safeOffset}, total: ${total})`,
+      );
+
+      const result = await this.jobsService.bulkCreate(taskId, rows);
+      this.logger.log(
+        `Saved ${result.created} jobs, skipped ${result.skipped} duplicates for task: ${name}`,
+      );
+
+      const newOffset = safeOffset + rows.length;
+      await this.tasksService.updateOffset(taskId, newOffset);
+
+      if (newOffset >= total) {
+        this.logger.log(`All data fetched for task: ${name}`);
+        await this.tasksService.updateStatus(taskId, 'completed');
+      } else {
+        await this.tasksService.updateStatus(taskId, 'idle');
+      }
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      const errorStack = error instanceof Error ? error.stack : undefined;
+      this.logger.error(
+        `Failed to process task ${name} (${taskId}): ${errorMessage}`,
+        errorStack,
+      );
+      await this.tasksService.updateStatus(taskId, 'error');
+    }
+  }
+
+  // Manually triggers the scraping job
+  async triggerScrape(): Promise<void> {
+    this.logger.log('Manual scrape triggered');
+    await this.handleScrape();
+  }
+
+  // Returns the current status of the scheduler
+  getStatus(): SchedulerStatus {
+    return {
+      isRunning: this.isRunning,
+      message: this.isRunning
+        ? 'Scraping job is currently running'
+        : 'Scheduler is idle',
+    };
+  }
+}
+
+export interface SchedulerStatus {
+  isRunning: boolean;
+  lastRun?: Date;
+  message: string;
 }

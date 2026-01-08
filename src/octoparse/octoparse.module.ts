@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { OctoparseService } from './octoparse.service';
+import { ConfigModule } from '../config/config.module';
 
 @Module({
   imports: [ConfigModule],
