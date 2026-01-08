@@ -18,10 +18,12 @@ export class OctoparseService {
   private tokenExpiresAt = 0;
 
   constructor(@Inject('APP_CONFIG') private readonly config: AppConfig) {
+    // Used for management and metadata
     this.http = axios.create({
       baseURL: 'https://openapi.octoparse.com',
       timeout: 30000,
     });
+    // Used for getting the data that tasks have scraped
     this.dataApi = axios.create({
       baseURL: 'https://dataapi.octoparse.com',
       timeout: 30000,
