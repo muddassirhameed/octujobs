@@ -5,9 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import type { AppConfig } from './config/interface/app-config.interface';
-import { OctoparseModule } from './octoparse/octoparse.module';
-import { TasksModule } from './tasks/tasks.module';
-import { JobsModule } from './jobs/jobs.module';
+import { OctoparseModule } from './integrations/octoparse/octoparse.module';
+import { TasksModule } from './domains/tasks/tasks.module';
+import { JobsModule } from './domains/jobs/jobs.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 
 @Module({

@@ -7,7 +7,7 @@ import {
   OctoparseTaskListResponse,
 } from './interfaces/task.interface';
 import { OctoparseDataResponse } from './interfaces/data.interface';
-import type { AppConfig } from '../config/interface/app-config.interface';
+import type { AppConfig } from '../../config/interface/app-config.interface';
 
 @Injectable()
 export class OctoparseService {

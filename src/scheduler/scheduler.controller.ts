@@ -1,6 +1,6 @@
 import { Controller, Post, Get } from '@nestjs/common';
 import { SchedulerService } from './scheduler.service';
-import type { SchedulerStatus } from './scheduler.service';
+import type { SchedulerStatus } from './interface/scheduler-status';
 
 @Controller('scheduler')
 export class SchedulerController {

@@ -3,8 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { Job, JobDocument } from './jobs.schema';
-import { CreateJobDto, NormalizedJobData } from './dto/job.dto';
-import { OctoparseDataRow } from '../octoparse/interfaces/data.interface';
+import { CreateJobDto } from './dto/job.dto';
+import { NormalizedJobData } from './interface/normalize-job-data';
+import { OctoparseDataRow } from '../../integrations/octoparse/interfaces/data.interface';
 
 @Injectable()
 export class JobsService {

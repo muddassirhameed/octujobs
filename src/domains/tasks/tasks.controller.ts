@@ -1,7 +1,8 @@
 import { Controller, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { JobsService } from '../jobs/jobs.service';
-import { Task, TaskLean } from './tasks.schema';
+import { Task } from './tasks.schema';
+import { TaskLean } from './interface/lean-task';
 import { Job } from '../jobs/jobs.schema';
 
 @Controller('tasks')

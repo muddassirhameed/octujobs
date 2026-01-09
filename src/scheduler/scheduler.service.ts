@@ -1,10 +1,11 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { OctoparseService } from '../octoparse/octoparse.service';
-import { JobsService } from '../jobs/jobs.service';
-import { TasksService } from '../tasks/tasks.service';
-import { TaskLean } from '../tasks/tasks.schema';
+import { OctoparseService } from '../integrations/octoparse/octoparse.service';
+import { JobsService } from '../domains/jobs/jobs.service';
+import { TasksService } from '../domains/tasks/tasks.service';
+import { TaskLean } from '../domains/tasks/interface/lean-task';
 import type { AppConfig } from '../config/interface/app-config.interface';
+import { SchedulerStatus } from './interface/scheduler-status';
 
 @Injectable()
 export class SchedulerService {
@@ -143,10 +144,4 @@ export class SchedulerService {
         : 'Scheduler is idle',
     };
   }
-}
-
-export interface SchedulerStatus {
-  isRunning: boolean;
-  lastRun?: Date;
-  message: string;
 }
