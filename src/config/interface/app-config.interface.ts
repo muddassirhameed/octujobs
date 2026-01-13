@@ -2,7 +2,7 @@ export interface AppConfig {
   appName: string;
   environment: 'development' | 'production';
   port: number;
-  mongodbUri: string;
+  MONGO_URL: string;
   octoparseUsername: string;
   octoparsePassword: string;
   scrapeIntervalSeconds: number;

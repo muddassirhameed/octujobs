@@ -18,30 +18,17 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: ['APP_CONFIG'],
-      useFactory: (config: AppConfig) => {
-        // Ensure URI is trimmed and valid
-        const uri = config.mongodbUri.trim();
-
-        if (!uri) {
-          throw new Error(
-            'MongoDB URI is empty. Please check MONGODB_URI environment variable.',
+      useFactory: (config: AppConfig) => ({
+        uri: config.MONGO_URL,
+        autoIndex: true,
+        connectionFactory: (connection: Connection): Connection => {
+          Logger.log(
+            `MongoDB connected successfully → ${connection.name}`,
+            'Mongoose',
           );
-        }
-
-        Logger.log(`Connecting to MongoDB...`, 'Mongoose');
-
-        return {
-          uri,
-          autoIndex: true,
-          connectionFactory: (connection: Connection): Connection => {
-            Logger.log(
-              `MongoDB connected successfully → ${connection.name}`,
-              'Mongoose',
-            );
-            return connection;
-          },
-        };
-      },
+          return connection;
+        },
+      }),
     }),
 
     ConfigModule,
