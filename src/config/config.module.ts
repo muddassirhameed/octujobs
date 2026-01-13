@@ -23,7 +23,7 @@ import { AppConfig } from './interface/app-config.interface';
           'development',
         ),
         port: Number(configService.get<number>('APP_PORT', 5000)),
-        mongodbUri: configService.get<string>('MONGODB_URI', ''),
+        mongodbUri: configService.get<string>('MONGO_URI', ''),
         octoparseUsername: configService.get<string>('OCTOPARSE_USERNAME', ''),
         octoparsePassword: configService.get<string>('OCTOPARSE_PASSWORD', ''),
         scrapeIntervalSeconds: Number(
