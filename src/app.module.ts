@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { ScheduleModule } from '@nestjs/schedule';
 import { MongooseModule } from '@nestjs/mongoose';
+import { Connection } from 'mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
@@ -13,14 +14,23 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
+
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: ['APP_CONFIG'],
       useFactory: (config: AppConfig) => ({
         uri: config.mongodbUri,
         autoIndex: true,
+        connectionFactory: (connection: Connection): Connection => {
+          Logger.log(
+            `MongoDB connected successfully → ${connection.name}`,
+            'Mongoose',
+          );
+          return connection;
+        },
       }),
     }),
+
     ConfigModule,
     OctoparseModule,
     TasksModule,
