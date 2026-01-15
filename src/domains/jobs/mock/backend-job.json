@@ -178,50 +178,5 @@
     "postdate": "2024-01-05",
     "category": "Backend",
     "company": "SystemDesign Pros"
-  },
-  {
-    "title": "Backend Intern",
-    "desc": "Learn backend development fundamentals. Work on real server-side projects.",
-    "image": "https://cdn.example.com/jobs/backend21.jpg",
-    "salary": "$50,000 - $60,000",
-    "postdate": "2024-01-05",
-    "category": "Backend",
-    "company": "Startup Tech"
-  },
-  {
-    "title": "Database Administrator",
-    "desc": "Manage and optimize database performance. Ensure data integrity and security.",
-    "image": "https://cdn.example.com/jobs/backend22.jpg",
-    "salary": "$100,000 - $140,000",
-    "postdate": "2024-01-04",
-    "category": "Backend",
-    "company": "DBA Experts"
-  },
-  {
-    "title": "Real-time Systems Developer",
-    "desc": "Build real-time applications with WebSockets. Implement live data streaming.",
-    "image": "https://cdn.example.com/jobs/backend23.jpg",
-    "salary": "$115,000 - $155,000",
-    "postdate": "2024-01-04",
-    "category": "Backend",
-    "company": "RealTime Systems"
-  },
-  {
-    "title": "Backend Performance Engineer",
-    "desc": "Optimize backend performance and response times. Profile and improve slow queries.",
-    "image": "https://cdn.example.com/jobs/backend24.jpg",
-    "salary": "$120,000 - $160,000",
-    "postdate": "2024-01-03",
-    "category": "Backend",
-    "company": "Performance Tech"
-  },
-  {
-    "title": "Cloud Backend Developer",
-    "desc": "Build cloud-native applications with AWS/Azure. Implement serverless architectures.",
-    "image": "https://cdn.example.com/jobs/backend25.jpg",
-    "salary": "$125,000 - $165,000",
-    "postdate": "2024-01-03",
-    "category": "Backend",
-    "company": "CloudSystems Inc."
   }
 ]
