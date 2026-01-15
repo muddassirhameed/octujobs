@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import type { AppConfig } from './config/interface/app-config.interface';
 import { OctoparseModule } from './integrations/octoparse/octoparse.module';
+import { DataSourceModule } from './integrations/data-source.module';
 import { TasksModule } from './domains/tasks/tasks.module';
 import { JobsModule } from './domains/jobs/jobs.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
@@ -33,6 +34,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 
     ConfigModule,
     OctoparseModule,
+    DataSourceModule,
     TasksModule,
     JobsModule,
     SchedulerModule,

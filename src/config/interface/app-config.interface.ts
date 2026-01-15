@@ -7,4 +7,5 @@ export interface AppConfig {
   octoparsePassword: string;
   scrapeIntervalSeconds: number;
   logLevel: 'debug' | 'info' | 'warn' | 'error';
+  dataSource: 'octoparse' | 'mock';
 }

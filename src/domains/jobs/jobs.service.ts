@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 
 import { Job, JobDocument } from './jobs.schema';
 import { CreateJobDto } from './dto/job.dto';
+import { UpdateJobDto } from './dto/update-job.dto';
 import { NormalizedJobData } from './interface/normalize-job-data';
 import { OctoparseDataRow } from '../../integrations/octoparse/interfaces/data.interface';
 
@@ -22,6 +23,7 @@ export class JobsService {
       'title',
       'jobTitle',
       'job_title',
+      'Job_Title',
       'job-title',
       'job_name',
       'jobName',
@@ -45,6 +47,12 @@ export class JobsService {
       'jobDescription',
       'job_description',
       'job-description',
+      'Job_location',
+      'job_location',
+      'location',
+      'btn_URL',
+      'url',
+      'jobUrl',
       'desc',
       'jobDesc',
       'job_desc',
@@ -181,8 +189,32 @@ export class JobsService {
     };
 
     const jobTitle = findValue(titleFields) || 'Untitled Job';
-    const jobDescription =
-      findValue(descriptionFields) || 'No description available';
+
+    // For mock JSON, combine location and URL into description if no description exists
+    let jobDescription = findValue(descriptionFields);
+    if (!jobDescription || jobDescription === 'No description available') {
+      // Support both old format (Job_location, btn_URL) and new format (desc, url, image, etc.)
+      const location =
+        rawData['Job_location'] ||
+        rawData['job_location'] ||
+        rawData['location'] ||
+        rawData['desc'];
+      const url =
+        rawData['btn_URL'] ||
+        rawData['url'] ||
+        rawData['jobUrl'] ||
+        rawData['image'];
+      const parts: string[] = [];
+      if (location) {
+        parts.push(String(location).trim());
+      }
+      if (url) {
+        parts.push(`Apply at: ${String(url).trim()}`);
+      }
+      jobDescription =
+        parts.length > 0 ? parts.join('\n') : 'No description available';
+    }
+
     const jobSalary = findValue(salaryFields);
     const datePostedStr = findValue(dateFields);
     let datePosted: Date | null = null;
@@ -305,5 +337,72 @@ export class JobsService {
       return 0;
     }
     return this.jobModel.countDocuments({ sourceTaskId: taskId.trim() });
+  }
+
+  // Retrieves a single job by its ID
+  async findOne(id: string): Promise<Job | null> {
+    if (!id || typeof id !== 'string' || id.trim() === '') {
+      return null;
+    }
+    const result = await this.jobModel.findById(id.trim()).lean();
+    return (result as unknown as Job | null) ?? null;
+  }
+
+  // Updates a job by its ID
+  async update(id: string, updateJobDto: UpdateJobDto): Promise<Job | null> {
+    if (!id || typeof id !== 'string' || id.trim() === '') {
+      return null;
+    }
+
+    const updateData: Partial<Job> = {};
+
+    if (updateJobDto.sourceTaskId !== undefined) {
+      updateData.sourceTaskId = updateJobDto.sourceTaskId;
+    }
+    if (updateJobDto.jobTitle !== undefined) {
+      updateData.jobTitle = updateJobDto.jobTitle;
+    }
+    if (updateJobDto.jobDescription !== undefined) {
+      updateData.jobDescription = updateJobDto.jobDescription;
+    }
+    if (updateJobDto.jobSalary !== undefined) {
+      updateData.jobSalary = updateJobDto.jobSalary;
+    }
+    if (updateJobDto.datePosted !== undefined) {
+      updateData.datePosted = updateJobDto.datePosted
+        ? new Date(updateJobDto.datePosted)
+        : null;
+    }
+    if (updateJobDto.processed !== undefined) {
+      updateData.processed = updateJobDto.processed;
+    }
+
+    const result = await this.jobModel
+      .findByIdAndUpdate(id.trim(), updateData, { new: true })
+      .lean();
+
+    if (!result) {
+      return null;
+    }
+
+    this.logger.log(`Updated job with ID: ${id}`);
+    return result as unknown as Job;
+  }
+
+  // Deletes a job by its ID
+  async remove(id: string): Promise<boolean> {
+    if (!id || typeof id !== 'string' || id.trim() === '') {
+      return false;
+    }
+
+    const result = await this.jobModel.findByIdAndDelete(id.trim());
+
+    if (!result) {
+      this.logger.warn(`Job with ID ${id} not found for deletion`);
+      return false;
+    }
+
+    this.logger.log(`Deleted job with ID: ${id}`);
+    return true;
   }
 }

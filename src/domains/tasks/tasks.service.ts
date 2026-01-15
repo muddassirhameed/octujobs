@@ -4,8 +4,9 @@ import { Model } from 'mongoose';
 import { Task, TaskDocument } from './tasks.schema';
 import { TaskLean } from './interface/lean-task';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { OctoparseService } from '../../integrations/octoparse/octoparse.service';
+import { DataSourceFactory } from '../../integrations/data-source.factory';
 import { OctoparseTask } from '../../integrations/octoparse/interfaces/task.interface';
+import { MockDataSourceService } from '../../integrations/mock/mock-data-source.service';
 
 @Injectable()
 export class TasksService {
@@ -14,19 +15,21 @@ export class TasksService {
   constructor(
     @InjectModel(Task.name)
     private readonly taskModel: Model<TaskDocument>,
-    private readonly octoparseService: OctoparseService,
+    private readonly dataSourceFactory: DataSourceFactory,
+    private readonly mockDataSourceService: MockDataSourceService,
   ) {}
 
-  // Syncs all tasks from Octoparse API and creates/updates them in the database
+  // Syncs all tasks from data source (Octoparse or Mock) and creates/updates them in the database
   async syncTasksFromOctoparse(): Promise<Task[]> {
-    this.logger.log('Syncing tasks from Octoparse...');
+    this.logger.log('Syncing tasks from data source...');
 
     try {
-      const groupsResponse = await this.octoparseService.fetchTaskGroups();
+      const dataSource = this.dataSourceFactory.getDataSource();
+      const groupsResponse = await dataSource.fetchTaskGroups();
       const groups = groupsResponse.data?.taskGroups || [];
 
       if (groups.length === 0) {
-        this.logger.warn('No task groups found in Octoparse');
+        this.logger.warn('No task groups found in data source');
         return [];
       }
 
@@ -34,7 +37,7 @@ export class TasksService {
 
       for (const group of groups) {
         try {
-          const tasksResponse = await this.octoparseService.fetchTasksByGroup(
+          const tasksResponse = await dataSource.fetchTasksByGroup(
             group.taskGroupId,
           );
           const tasks = tasksResponse.data?.tasks || [];
@@ -49,6 +52,25 @@ export class TasksService {
       }
 
       const syncedTasks: Task[] = [];
+
+      // For mock data source, use all mock task IDs if no tasks found
+      if (allTasks.length === 0) {
+        const mockTaskIds = this.mockDataSourceService.getMockTaskIds();
+        const taskNames = [
+          'Frontend Jobs Scraping',
+          'Backend Jobs Scraping',
+          'Design Jobs Scraping',
+        ];
+        mockTaskIds.forEach((taskId, index) => {
+          allTasks.push({
+            taskId,
+            taskName: taskNames[index] || 'Mock Job Scraping Task',
+            status: 1,
+            createTime: new Date().toISOString(),
+            lastRunTime: new Date().toISOString(),
+          });
+        });
+      }
 
       for (const octoparseTask of allTasks) {
         try {
@@ -67,12 +89,14 @@ export class TasksService {
         }
       }
 
-      this.logger.log(`Synced ${syncedTasks.length} tasks from Octoparse`);
+      this.logger.log(`Synced ${syncedTasks.length} tasks from data source`);
       return syncedTasks;
     } catch (error: unknown) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
-      this.logger.error(`Failed to sync tasks from Octoparse: ${errorMessage}`);
+      this.logger.error(
+        `Failed to sync tasks from data source: ${errorMessage}`,
+      );
       throw error;
     }
   }

@@ -8,9 +8,10 @@ import {
 } from './interfaces/task.interface';
 import { OctoparseDataResponse } from './interfaces/data.interface';
 import type { AppConfig } from '../../config/interface/app-config.interface';
+import { IDataSource } from '../data-source.interface';
 
 @Injectable()
-export class OctoparseService {
+export class OctoparseService implements IDataSource {
   private readonly logger = new Logger(OctoparseService.name);
   private readonly http: AxiosInstance;
   private readonly dataApi: AxiosInstance;

@@ -1,6 +1,6 @@
 import { Injectable, Logger, Inject } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { OctoparseService } from '../integrations/octoparse/octoparse.service';
+import { DataSourceFactory } from '../integrations/data-source.factory';
 import { JobsService } from '../domains/jobs/jobs.service';
 import { TasksService } from '../domains/tasks/tasks.service';
 import { TaskLean } from '../domains/tasks/interface/lean-task';
@@ -14,7 +14,7 @@ export class SchedulerService {
 
   constructor(
     private readonly tasksService: TasksService,
-    private readonly octoparseService: OctoparseService,
+    private readonly dataSourceFactory: DataSourceFactory,
     private readonly jobsService: JobsService,
     @Inject('APP_CONFIG') private readonly config: AppConfig,
   ) {
@@ -36,7 +36,7 @@ export class SchedulerService {
 
     try {
       this.logger.log('=== Starting scheduled scraping job ===');
-      this.logger.log('Step 1: Syncing tasks from Octoparse...');
+      this.logger.log('Step 1: Syncing tasks from data source...');
       await this.tasksService.syncTasksFromOctoparse();
 
       this.logger.log('Step 2: Fetching active tasks...');
@@ -84,7 +84,8 @@ export class SchedulerService {
       const batchSize = 100;
       const safeOffset = Math.max(0, Math.floor(lastOffset));
 
-      const dataResponse = await this.octoparseService.fetchTaskData(
+      const dataSource = this.dataSourceFactory.getDataSource();
+      const dataResponse = await dataSource.fetchTaskData(
         taskId,
         safeOffset,
         batchSize,

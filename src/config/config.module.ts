@@ -33,6 +33,10 @@ import { AppConfig } from './interface/app-config.interface';
           'LOG_LEVEL',
           'debug',
         ),
+        dataSource: ((): 'octoparse' | 'mock' => {
+          const source = configService.get<string>('DATA_SOURCE', 'mock');
+          return source === 'octoparse' ? 'octoparse' : 'mock';
+        })(),
       }),
       inject: [ConfigService],
     },

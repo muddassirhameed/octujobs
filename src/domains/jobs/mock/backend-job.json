@@ -1,0 +1,227 @@
+[
+  {
+    "title": "Senior Backend Developer",
+    "desc": "Build scalable server applications with Node.js and Python. Design RESTful APIs and microservices.",
+    "image": "https://cdn.example.com/jobs/backend1.jpg",
+    "salary": "$130,000 - $170,000",
+    "postdate": "2024-01-15",
+    "category": "Backend",
+    "company": "ServerSide Tech"
+  },
+  {
+    "title": "Node.js Developer",
+    "desc": "Develop backend services with Express.js. Work with MongoDB and implement authentication.",
+    "image": "https://cdn.example.com/jobs/backend2.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-14",
+    "category": "Backend",
+    "company": "NodeMasters"
+  },
+  {
+    "title": "Python Django Developer",
+    "desc": "Build web applications with Django framework. Create robust backend systems with Python.",
+    "image": "https://cdn.example.com/jobs/backend3.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-14",
+    "category": "Backend",
+    "company": "PythonPros"
+  },
+  {
+    "title": "Java Spring Developer",
+    "desc": "Develop enterprise applications with Spring Boot. Implement microservices architecture.",
+    "image": "https://cdn.example.com/jobs/backend4.jpg",
+    "salary": "$125,000 - $165,000",
+    "postdate": "2024-01-13",
+    "category": "Backend",
+    "company": "Enterprise Java"
+  },
+  {
+    "title": "Go Developer",
+    "desc": "Build high-performance services with Go. Create concurrent applications and APIs.",
+    "image": "https://cdn.example.com/jobs/backend5.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-13",
+    "category": "Backend",
+    "company": "GoLang Experts"
+  },
+  {
+    "title": "Ruby on Rails Developer",
+    "desc": "Develop web applications with Ruby on Rails. Follow MVC pattern and conventions.",
+    "image": "https://cdn.example.com/jobs/backend6.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-12",
+    "category": "Backend",
+    "company": "RailsMasters"
+  },
+  {
+    "title": "PHP Laravel Developer",
+    "desc": "Build applications with Laravel framework. Implement Eloquent ORM and Blade templates.",
+    "image": "https://cdn.example.com/jobs/backend7.jpg",
+    "salary": "$100,000 - $140,000",
+    "postdate": "2024-01-12",
+    "category": "Backend",
+    "company": "Laravel Studio"
+  },
+  {
+    "title": "Backend Architect",
+    "desc": "Design scalable backend systems. Choose appropriate databases and technologies.",
+    "image": "https://cdn.example.com/jobs/backend8.jpg",
+    "salary": "$150,000 - $200,000",
+    "postdate": "2024-01-11",
+    "category": "Backend",
+    "company": "Architecture Solutions"
+  },
+  {
+    "title": "Database Engineer",
+    "desc": "Design and optimize database schemas. Write efficient SQL queries and procedures.",
+    "image": "https://cdn.example.com/jobs/backend9.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-11",
+    "category": "Backend",
+    "company": "DataSystems Inc."
+  },
+  {
+    "title": "API Developer",
+    "desc": "Design and implement RESTful APIs. Create comprehensive API documentation.",
+    "image": "https://cdn.example.com/jobs/backend10.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-10",
+    "category": "Backend",
+    "company": "API Masters"
+  },
+  {
+    "title": "Microservices Developer",
+    "desc": "Build and maintain microservices architecture. Implement service communication patterns.",
+    "image": "https://cdn.example.com/jobs/backend11.jpg",
+    "salary": "$125,000 - $165,000",
+    "postdate": "2024-01-10",
+    "category": "Backend",
+    "company": "MicroServices Corp"
+  },
+  {
+    "title": "DevOps Engineer",
+    "desc": "Implement CI/CD pipelines and infrastructure. Work with Docker and Kubernetes.",
+    "image": "https://cdn.example.com/jobs/backend12.jpg",
+    "salary": "$130,000 - $170,000",
+    "postdate": "2024-01-09",
+    "category": "Backend",
+    "company": "DevOps Solutions"
+  },
+  {
+    "title": "C# .NET Developer",
+    "desc": "Build applications with .NET Core framework. Implement ASP.NET Web APIs.",
+    "image": "https://cdn.example.com/jobs/backend13.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-09",
+    "category": "Backend",
+    "company": "DotNet Experts"
+  },
+  {
+    "title": "Scala Developer",
+    "desc": "Develop backend services with Scala and Akka. Build functional programming applications.",
+    "image": "https://cdn.example.com/jobs/backend14.jpg",
+    "salary": "$125,000 - $165,000",
+    "postdate": "2024-01-08",
+    "category": "Backend",
+    "company": "Scala Systems"
+  },
+  {
+    "title": "Backend Team Lead",
+    "desc": "Lead backend development team. Coordinate projects and mentor developers.",
+    "image": "https://cdn.example.com/jobs/backend15.jpg",
+    "salary": "$140,000 - $180,000",
+    "postdate": "2024-01-08",
+    "category": "Backend",
+    "company": "TechLeaders Inc."
+  },
+  {
+    "title": "Redis Specialist",
+    "desc": "Implement caching solutions with Redis. Optimize data storage and retrieval.",
+    "image": "https://cdn.example.com/jobs/backend16.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-07",
+    "category": "Backend",
+    "company": "CacheMasters"
+  },
+  {
+    "title": "Message Queue Engineer",
+    "desc": "Implement messaging systems with Kafka/RabbitMQ. Ensure reliable message delivery.",
+    "image": "https://cdn.example.com/jobs/backend17.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-07",
+    "category": "Backend",
+    "company": "Messaging Systems"
+  },
+  {
+    "title": "Backend Security Engineer",
+    "desc": "Ensure backend application security. Implement authentication and authorization.",
+    "image": "https://cdn.example.com/jobs/backend18.jpg",
+    "salary": "$125,000 - $165,000",
+    "postdate": "2024-01-06",
+    "category": "Backend",
+    "company": "SecureBackend Inc."
+  },
+  {
+    "title": "GraphQL Developer",
+    "desc": "Implement GraphQL APIs with Apollo or Relay. Design efficient data queries.",
+    "image": "https://cdn.example.com/jobs/backend19.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-06",
+    "category": "Backend",
+    "company": "GraphQL Solutions"
+  },
+  {
+    "title": "System Design Engineer",
+    "desc": "Design large-scale distributed systems. Plan for scalability and fault tolerance.",
+    "image": "https://cdn.example.com/jobs/backend20.jpg",
+    "salary": "$140,000 - $190,000",
+    "postdate": "2024-01-05",
+    "category": "Backend",
+    "company": "SystemDesign Pros"
+  },
+  {
+    "title": "Backend Intern",
+    "desc": "Learn backend development fundamentals. Work on real server-side projects.",
+    "image": "https://cdn.example.com/jobs/backend21.jpg",
+    "salary": "$50,000 - $60,000",
+    "postdate": "2024-01-05",
+    "category": "Backend",
+    "company": "Startup Tech"
+  },
+  {
+    "title": "Database Administrator",
+    "desc": "Manage and optimize database performance. Ensure data integrity and security.",
+    "image": "https://cdn.example.com/jobs/backend22.jpg",
+    "salary": "$100,000 - $140,000",
+    "postdate": "2024-01-04",
+    "category": "Backend",
+    "company": "DBA Experts"
+  },
+  {
+    "title": "Real-time Systems Developer",
+    "desc": "Build real-time applications with WebSockets. Implement live data streaming.",
+    "image": "https://cdn.example.com/jobs/backend23.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-04",
+    "category": "Backend",
+    "company": "RealTime Systems"
+  },
+  {
+    "title": "Backend Performance Engineer",
+    "desc": "Optimize backend performance and response times. Profile and improve slow queries.",
+    "image": "https://cdn.example.com/jobs/backend24.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-03",
+    "category": "Backend",
+    "company": "Performance Tech"
+  },
+  {
+    "title": "Cloud Backend Developer",
+    "desc": "Build cloud-native applications with AWS/Azure. Implement serverless architectures.",
+    "image": "https://cdn.example.com/jobs/backend25.jpg",
+    "salary": "$125,000 - $165,000",
+    "postdate": "2024-01-03",
+    "category": "Backend",
+    "company": "CloudSystems Inc."
+  }
+]

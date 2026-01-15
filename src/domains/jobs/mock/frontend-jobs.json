@@ -1,0 +1,254 @@
+[
+  {
+    "title": "Senior Frontend Developer",
+    "desc": "Build responsive web applications using React and modern JavaScript. Collaborate with design and backend teams.",
+    "image": "https://cdn.example.com/jobs/frontend1.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-15",
+    "category": "Frontend",
+    "company": "TechCorp Solutions"
+  },
+  {
+    "title": "Frontend Engineer",
+    "desc": "Develop user interfaces with Vue.js and TypeScript. Optimize performance and ensure cross-browser compatibility.",
+    "image": "https://cdn.example.com/jobs/frontend2.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-14",
+    "category": "Frontend",
+    "company": "Digital Innovations"
+  },
+  {
+    "title": "React Developer",
+    "desc": "Create dynamic SPAs using React hooks and context API. Implement state management with Redux.",
+    "image": "https://cdn.example.com/jobs/frontend3.jpg",
+    "salary": "$105,000 - $145,000",
+    "postdate": "2024-01-14",
+    "category": "Frontend",
+    "company": "ReactWorks Inc."
+  },
+  {
+    "title": "Vue.js Developer",
+    "desc": "Build interactive applications with Vue 3 Composition API. Work with Vuex for state management.",
+    "image": "https://cdn.example.com/jobs/frontend4.jpg",
+    "salary": "$100,000 - $140,000",
+    "postdate": "2024-01-13",
+    "category": "Frontend",
+    "company": "VueMasters"
+  },
+  {
+    "title": "Angular Developer",
+    "desc": "Develop enterprise applications using Angular framework. Implement RxJS and NgRx patterns.",
+    "image": "https://cdn.example.com/jobs/frontend5.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-13",
+    "category": "Frontend",
+    "company": "Enterprise Solutions"
+  },
+  {
+    "title": "JavaScript Developer",
+    "desc": "Write clean, efficient JavaScript code. Work with modern ES6+ features and Web APIs.",
+    "image": "https://cdn.example.com/jobs/frontend6.jpg",
+    "salary": "$95,000 - $130,000",
+    "postdate": "2024-01-12",
+    "category": "Frontend",
+    "company": "WebTech Corp"
+  },
+  {
+    "title": "UI Developer",
+    "desc": "Implement pixel-perfect designs with HTML5, CSS3, and JavaScript. Ensure accessibility standards.",
+    "image": "https://cdn.example.com/jobs/frontend7.jpg",
+    "salary": "$90,000 - $125,000",
+    "postdate": "2024-01-12",
+    "category": "Frontend",
+    "company": "UI Specialists"
+  },
+  {
+    "title": "Frontend Architect",
+    "desc": "Design scalable frontend architecture. Establish coding standards and best practices.",
+    "image": "https://cdn.example.com/jobs/frontend8.jpg",
+    "salary": "$140,000 - $190,000",
+    "postdate": "2024-01-11",
+    "category": "Frontend",
+    "company": "Architecture Pros"
+  },
+  {
+    "title": "Mobile Frontend Developer",
+    "desc": "Build mobile apps with React Native. Create cross-platform mobile experiences.",
+    "image": "https://cdn.example.com/jobs/frontend9.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-11",
+    "category": "Frontend",
+    "company": "MobileFirst Apps"
+  },
+  {
+    "title": "Frontend Team Lead",
+    "desc": "Lead frontend development team. Mentor junior developers and coordinate projects.",
+    "image": "https://cdn.example.com/jobs/frontend10.jpg",
+    "salary": "$130,000 - $170,000",
+    "postdate": "2024-01-10",
+    "category": "Frontend",
+    "company": "LeadTech Solutions"
+  },
+  {
+    "title": "Svelte Developer",
+    "desc": "Build applications with Svelte framework. Create reactive components with minimal code.",
+    "image": "https://cdn.example.com/jobs/frontend11.jpg",
+    "salary": "$100,000 - $140,000",
+    "postdate": "2024-01-10",
+    "category": "Frontend",
+    "company": "Svelte Masters"
+  },
+  {
+    "title": "Frontend Performance Engineer",
+    "desc": "Optimize frontend performance and loading times. Implement lazy loading and code splitting.",
+    "image": "https://cdn.example.com/jobs/frontend12.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-09",
+    "category": "Frontend",
+    "company": "Performance Experts"
+  },
+  {
+    "title": "TypeScript Developer",
+    "desc": "Develop type-safe applications with TypeScript. Implement interfaces and generics.",
+    "image": "https://cdn.example.com/jobs/frontend13.jpg",
+    "salary": "$105,000 - $145,000",
+    "postdate": "2024-01-09",
+    "category": "Frontend",
+    "company": "TypeSafe Inc."
+  },
+  {
+    "title": "Next.js Developer",
+    "desc": "Build SSR applications with Next.js framework. Implement API routes and static generation.",
+    "image": "https://cdn.example.com/jobs/frontend14.jpg",
+    "salary": "$110,000 - $150,000",
+    "postdate": "2024-01-08",
+    "category": "Frontend",
+    "company": "NextLevel Apps"
+  },
+  {
+    "title": "Frontend QA Engineer",
+    "desc": "Test frontend applications and ensure quality. Write automated tests with Cypress.",
+    "image": "https://cdn.example.com/jobs/frontend15.jpg",
+    "salary": "$85,000 - $120,000",
+    "postdate": "2024-01-08",
+    "category": "Frontend",
+    "company": "QualityFirst Tech"
+  },
+  {
+    "title": "CSS Specialist",
+    "desc": "Create advanced CSS animations and layouts. Master CSS Grid, Flexbox, and custom properties.",
+    "image": "https://cdn.example.com/jobs/frontend16.jpg",
+    "salary": "$90,000 - $125,000",
+    "postdate": "2024-01-07",
+    "category": "Frontend",
+    "company": "StyleMasters"
+  },
+  {
+    "title": "WebGL Developer",
+    "desc": "Create 3D web experiences with WebGL and Three.js. Build interactive visualizations.",
+    "image": "https://cdn.example.com/jobs/frontend17.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-07",
+    "category": "Frontend",
+    "company": "Visual Experiences"
+  },
+  {
+    "title": "Xyz Designer",
+    "desc": "Xyz New DESIGN",
+    "image": "https://cdn.example.com/jobs/frontend1.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-15",
+    "category": "Frontend",
+    "company": "TechCorp Solutions"
+  },
+  {
+    "title": "123 Designer",
+    "desc": "456 New DESIGN",
+    "image": "https://cdn.example.com/jobs/frontend1.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-15",
+    "category": "Frontend",
+    "company": "TechCorp Solutions"
+  },
+  {
+    "title": "456 Designer",
+    "desc": "456 New DESIGN",
+    "image": "https://cdn.example.com/jobs/frontend1.jpg",
+    "salary": "$120,000 - $160,000",
+    "postdate": "2024-01-15",
+    "category": "Frontend",
+    "company": "TechCorp Solutions"
+  },
+  {
+    "title": "Accessibility Engineer",
+    "desc": "Ensure web applications meet WCAG standards. Implement ARIA attributes and keyboard navigation.",
+    "image": "https://cdn.example.com/jobs/frontend18.jpg",
+    "salary": "$95,000 - $130,000",
+    "postdate": "2024-01-06",
+    "category": "Frontend",
+    "company": "Inclusive Web"
+  },
+  {
+    "title": "Frontend DevOps",
+    "desc": "Setup CI/CD pipelines for frontend applications. Configure Webpack and build tools.",
+    "image": "https://cdn.example.com/jobs/frontend19.jpg",
+    "salary": "$105,000 - $145,000",
+    "postdate": "2024-01-06",
+    "category": "Frontend",
+    "company": "BuildSystems Inc."
+  },
+  {
+    "title": "JAMstack Developer",
+    "desc": "Build static sites with Gatsby or Hugo. Work with headless CMS and APIs.",
+    "image": "https://cdn.example.com/jobs/frontend20.jpg",
+    "salary": "$100,000 - $140,000",
+    "postdate": "2024-01-05",
+    "category": "Frontend",
+    "company": "StaticSite Pros"
+  },
+  {
+    "title": "Frontend Intern",
+    "desc": "Learn frontend development with mentorship. Work on real projects and grow skills.",
+    "image": "https://cdn.example.com/jobs/frontend21.jpg",
+    "salary": "$45,000 - $55,000",
+    "postdate": "2024-01-05",
+    "category": "Frontend",
+    "company": "TechStart Inc."
+  },
+  {
+    "title": "Frontend Consultant",
+    "desc": "Provide expert advice on frontend architecture. Help teams improve their frontend practices.",
+    "image": "https://cdn.example.com/jobs/frontend22.jpg",
+    "salary": "$130,000 - $180,000",
+    "postdate": "2024-01-04",
+    "category": "Frontend",
+    "company": "Consulting Experts"
+  },
+  {
+    "title": "Animation Developer",
+    "desc": "Create smooth animations with CSS and JavaScript. Use GSAP or Framer Motion libraries.",
+    "image": "https://cdn.example.com/jobs/frontend23.jpg",
+    "salary": "$95,000 - $130,000",
+    "postdate": "2024-01-04",
+    "category": "Frontend",
+    "company": "Motion Design Studio"
+  },
+  {
+    "title": "PWA Developer",
+    "desc": "Build Progressive Web Apps with offline capabilities. Implement service workers and web manifests.",
+    "image": "https://cdn.example.com/jobs/frontend24.jpg",
+    "salary": "$105,000 - $145,000",
+    "postdate": "2024-01-03",
+    "category": "Frontend",
+    "company": "WebApp Solutions"
+  },
+  {
+    "title": "Frontend Security Engineer",
+    "desc": "Ensure frontend application security. Implement CSP headers and XSS protection.",
+    "image": "https://cdn.example.com/jobs/frontend25.jpg",
+    "salary": "$115,000 - $155,000",
+    "postdate": "2024-01-03",
+    "category": "Frontend",
+    "company": "SecureFrontend Inc."
+  }
+]
